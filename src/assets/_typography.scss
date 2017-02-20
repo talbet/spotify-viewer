@@ -1,0 +1,128 @@
+/*! Typebase.less v0.1.0 | MIT License */
+/* Setup */
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600');
+@import './variables';
+@import './mixins';
+
+
+html {
+  font-family: $family-body;
+  line-height: 1.5;
+  font-weight: 100;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* =============================================
+  Copy and Lists
+============================================= */
+
+p {
+  line-height: 1.5rem;
+
+  @include rhythm();
+}
+
+ul,
+ol {
+  @include rhythm();
+}
+
+ul li,
+ol li {
+  line-height: 1.5rem;
+}
+
+ul ul,
+ol ul,
+ul ol,
+ol ol {
+  @include rhythm(0);
+}
+
+blockquote {
+  line-height: 1.5rem;
+
+  @include rhythm();
+}
+
+.list-inline {
+  list-style: none;
+}
+
+.list-inline > * {
+  display: inline-block;
+}
+
+/* -----  End of Copy and Lists  ------ */
+
+/* =============================================
+  Headings
+============================================= */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $family-body;
+  line-height: 1;
+  margin-bottom: 0.5em;
+}
+
+h1, .h1 {
+  font-size: $size-1;
+}
+
+h2, .h2 {
+  font-size: $size-2;
+}
+
+h3, .h3 {
+  font-size: $size-3;
+}
+
+h4, .h4 {
+  font-size: $size-4;
+}
+
+h5, .h5 {
+  font-size: $size-5;
+}
+
+h6, .h6 {
+  font-size: $size-6;
+}
+
+/* -----  End of Headings  ------ */
+
+/* =============================================
+  Tables
+============================================= */
+
+table {
+  border-spacing: 0;
+  border-collapse: collapse;
+
+  @include rhythm();
+}
+
+table td,
+table th {
+  padding: 0;
+  line-height: 33px;
+}
+
+/* -----  End of Tables  ------ */
+
+/* Leading paragraph text */
+
+.lead {
+  font-size: 1.414rem;
+}
+
+/* Hug the block above you */
+
+.hug {
+  margin-top: 0;
+}

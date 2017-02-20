@@ -1,0 +1,108 @@
+/* ==========  colors  ========== */
+
+$brand: #2ebd59;
+
+$black:        hsl(0, 0%, 4%);
+$black-bis:    hsl(0, 0%, 7%);
+$black-ter:    hsl(0, 0%, 14%);
+
+$grey-darker:  hsl(0, 0%, 21%);
+$grey-dark:    hsl(0, 0%, 29%);
+$grey:         hsl(0, 0%, 48%);
+$grey-light:   hsl(0, 0%, 71%);
+$grey-lighter: hsl(0, 0%, 86%);
+
+$white-ter:    hsl(0, 0%, 96%);
+$white-bis:    hsl(0, 0%, 98%);
+$white:        hsl(0, 0%, 100%);
+
+$orange:       hsl(14,  100%, 53%);
+$yellow:       hsl(48,  100%, 67%);
+$green:        hsl(141, 71%,  48%);
+$turquoise:    hsl(171, 100%, 41%);
+$blue:         hsl(217, 71%,  53%);
+$purple:       hsl(271, 100%, 71%);
+$red:          hsl(348, 100%, 61%);
+
+$info: $blue;
+$success: $green;
+$warning: $yellow;
+$danger: $red;
+
+$light: $white-ter;
+$dark: $grey-darker;
+
+/* ==========  Typography  ========== */
+
+$family-body:'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$family-code: "Inconsolata", "Consolas", "Monaco", monospace;
+
+$type-scale: 100%; // 100% for standard 16px body
+
+$size-1: rem-calc(48px);
+$size-2: rem-calc(40px);
+$size-3: rem-calc(28px);
+$size-4: rem-calc(24px);
+$size-5: rem-calc(18px);
+$size-6: rem-calc(14px);
+$size-7: rem-calc(11px);
+
+$size-small: $size-7;
+$size-normal: $size-6;
+$size-medium: $size-5;
+$size-large: $size-3;
+$size-huge: $size-1;
+
+$weight-normal: 400;
+$weight-bold: 700;
+$weight-title-normal: 300;
+$weight-title-bold: 500;
+
+/* ==========  Units  ========== */
+
+$gutter: 1.5rem;
+
+
+/* ==========  Miscellaneous  ========== */
+
+$easing: ease-out;
+$radius-small: 2px;
+$radius: 3px;
+$radius-large: 5px;
+$speed: 86ms;
+
+
+
+// Invert colors
+
+$info-invert: findColorInvert($info);
+$success-invert: findColorInvert($success);
+$warning-invert: findColorInvert($warning);
+$danger-invert: findColorInvert($danger);
+
+$light-invert: $dark;
+$dark-invert: $light;
+
+// General colors
+$body-background: $white-ter;
+$background: $white-ter;
+$border: $grey-lighter;
+$border-hover: $grey-light;
+
+// Text colors
+$text: $grey-dark;
+$text-invert: findColorInvert($text);
+$text-light: $grey;
+$text-strong: $grey-darker;
+
+/* ==========  Functions  ========== */
+
+@function rem-calc($size) {
+  $global-scale: 16 / ($type-scale / 100);
+  $rem-size: $size / $global-scale;
+  @return #{strip-units($rem-size)}rem;
+}
+
+@function strip-units($number) {
+  @return $number / ($number * 0 + 1);
+}

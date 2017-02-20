@@ -1,0 +1,17 @@
+.Media {
+  display: flex;
+  align-items: flex-start;
+}
+
+.Media-figure {
+  margin-right: 1rem;
+}
+
+.Media-body {
+  flex: 1;
+}
+
+.Media--centered {
+  align-items: center;
+  vertical-align: middle;
+}

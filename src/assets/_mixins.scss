@@ -1,0 +1,25 @@
+@import './variables';
+
+@mixin grid($multiplier: 1) {
+  display: flex;
+  margin-left: -($multiplier * $gutter / 2);
+  margin-right: -($multiplier * $gutter / 2);
+
+  & > * {
+    padding-left: $multiplier * $gutter / 2;
+    padding-right: $multiplier * $gutter / 2;
+  }
+}
+
+@mixin bleed($multiplier: 1) {
+  margin-left: -($multiplier * $gutter / 2);
+  margin-right: -($multiplier * $gutter / 2);
+}
+
+@mixin rhythm($multiplier: 1) {
+  margin-top: 0;
+  margin-bottom: $multiplier * $gutter;
+}
+
+
+
