@@ -20,7 +20,6 @@
         </div>
         <div>
           <v-button @click=handleDiscogsSearch>
-            <icon name="fa-crosshairs"></icon>
             More Info <span v-if="isBusy"> - Loading</span>
           </v-button>
         </div>
@@ -50,7 +49,6 @@
     components: {
       'v-button': require('./Button'),
       'lazy-image': require('./LazyImage'),
-      'icon': require('vue-icons'),
     },
     computed: {
       album() {

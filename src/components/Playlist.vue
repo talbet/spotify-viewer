@@ -43,8 +43,8 @@
 <script>
   import { mapState } from 'vuex';
   import groupBy from 'lodash/groupBy';
-  import Tabs from 'components/tabs/Tabs.vue';
-  import TabPane from 'components/tabs/TabPane.vue';
+  import Tabs from './tabs/Tabs.vue';
+  import TabPane from './tabs/TabPane.vue';
   import spotify from '../mixins/spotify';
   import PlaylistItemTrack from './PlaylistItemTrack.vue';
   import PlaylistItemAlbum from './PlaylistItemAlbum.vue';

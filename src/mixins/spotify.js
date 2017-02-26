@@ -1,6 +1,9 @@
 import SpotifyWebApi from 'spotify-web-api-node';
 import request from 'superagent';
 import Cookies from 'cookies-js';
+import chunk from 'lodash.chunk';
+import uniq from 'lodash.uniq';
+import flatMap from 'lodash.flatmap';
 import ENV from '../../env';
 
 /* From: https://github.com/thelinmichael/spotify-web-api-node */
@@ -119,26 +122,29 @@ const spotifyMixin = {
       });
     },
     updateAlbumInfo() {
-      const groups = [];
-      const promises = [];
-      const maxQuerySize = 20;
+      const MAX_QUERY_SIZE = 20;
 
-      const albumIds = this.$store.state.currentPlaylistTracks.map(
+      const state = this.$store.state;
+      const albumIds = state.currentPlaylistTracks.map(
         item => item.track.album.id,
       );
-      const uniques = [...new Set(albumIds)];
-      while (uniques.length > 0)
-        groups.push(uniques.splice(0, maxQuerySize));
-        groups.forEach(group =>
-        promises.push(retry(() => spotifyApi.getAlbums(group))));
+      const groups = chunk(uniq(albumIds), MAX_QUERY_SIZE);
 
+      const promises = [];
+      groups.forEach(group => {
+        promises.push(retry(() => spotifyApi.getAlbums(group)));
+      });
+
+      // When all promises are completed, update state
       Promise.all(promises).then(values => {
-        const albums = {};
-        const pick = values.map(data => [...data.body.albums]);
-        const flatten = [].concat.apply([], pick);
-        flatten.forEach(album => albums[album.id] = album);
+        const albumsArray = flatMap(values, n => n.body.albums);
+        const albumsKeyed = albumsArray.reduce(
+          (collection, album) =>
+            Object.assign(collection, { [album.id]: album }),
+          {},
+        );
 
-        this.$store.commit('setCurrentPlaylistAlbums', albums);
+        this.$store.commit('setCurrentPlaylistAlbums', albumsKeyed);
       });
     },
   },
