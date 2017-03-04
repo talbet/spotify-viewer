@@ -3,17 +3,31 @@
     <div class="Sidebar">
         <div class="AlbumImage">
       <a :href="album.uri">
-          <lazy-image v-if="thumbnailUrl" :src="thumbnailUrl" ratio="1:1" :alt="album.name" container=".Panel--main"/>
+          <lazy-image
+            v-if="thumbnailUrl"
+            :src="thumbnailUrl"
+            ratio="1:1"
+            :alt="album.name"
+            container=".Panel--main"/>
       </a>
         </div>
     </div>
     <div class="Main">
       <div class="AlbumMeta">
         <div class="HeadingGroup">
-          <h1 class="h3">{{ album.artists[0].name }}</h1>
-          <h2 class="h4">{{ album.name }}</h2>
+          <h1 class="h3">
+            <a :href="album.artists[0].uri"> {{ album.artists[0].name }} </a>
+          </h1>
+          <h2 class="h4">
+            <a :href="album.uri"> {{ album.name }} </a>
+          </h2>
           <ul class="Meta">
-            <li v-if="albumExtra.popularity">Popularity: {{ albumExtra.popularity }}</li>
+            <li v-if="albumExtra.popularity">
+              Popularity:
+              <div class="Popularity" v-for="i in range(0, popularity)">
+                <icon class="Popularity-icon" name="star"></icon>
+              </div>
+            </li>
             <li v-if="releaseYear">Date: {{ releaseYear }}</li>
             <li v-if="albumExtra.label">Label: {{ albumExtra.label }}</li>
             <li v-if="genres">Genre: {{ genres }}</li>
@@ -71,10 +85,21 @@
       },
       styles() {
         return this.discogsData.styles ? this.discogsData.styles.join(', ') : '';
-      }
-
+      },
+      popularity() {
+        return Math.ceil( this.albumExtra.popularity / 10);
+      },
     },
     methods: {
+      range: function(begin, end) {
+        var offset = begin > end ? end : begin;
+        var delta = Math.abs(end - begin);
+        var result = [];
+        for (var i = 0; i <= delta; i++) {
+            result.push(i + offset);
+        };
+        return result;
+      },
       handleDiscogsSearch() {
         const searchString = `${this.album.artists[0].name} ${this.album.name}`;
         const id = this.album.id;
@@ -136,6 +161,14 @@
 
   .TrackList {
     columns: 2;
+  }
+
+  .Popularity {
+    display: inline-block;
+  }
+
+  .Popularity-icon {
+    display: inline-block;
   }
 
 </style>

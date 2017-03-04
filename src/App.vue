@@ -1,5 +1,5 @@
 <template>
-  <div id="vue" class="App">
+  <div id="vue" class="App" :style="appStyles">
     <div class="Header">
       <div class="Beam">
         <div class="Beam-section">
@@ -24,8 +24,6 @@
 
     <div class="MainContent">
       <div class="Sidebar Panel">
-
-        <hr>
         <user-playlists/>
       </div>
       <div class="Main Panel Panel--main">
@@ -44,6 +42,16 @@
       'user-status': UserStatus,
       'user-playlists': UserPlaylists,
     },
+    computed: {
+      appStyles() {
+        const bgColor = this.$store.state.backgroundColor
+          ? this.$store.state.backgroundColor
+          : 'rgba(0, 0, 0, 0.3)';
+        return {
+          'background-image': `linear-gradient(${bgColor}, #141414)`
+        };
+      }
+    }
   };
 </script>
 

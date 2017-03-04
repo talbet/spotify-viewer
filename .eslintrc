@@ -9,7 +9,8 @@
   },
   "extends": "airbnb-base",
   "plugins": [
-    "html"
+    "html",
+    "vue"
   ],
   "rules": {
     "arrow-parens": ["error", "as-needed", {

@@ -8,7 +8,9 @@
         </a>
       </div>
       <div class="Content">
-        <h1 class="Playlist-name">{{ currentPlaylist.name }}</h1>
+        <a :href="currentPlaylist.uri">
+          <h1 class="Playlist-name">{{ currentPlaylist.name }}</h1>
+        </a>
         <div v-if="currentPlaylist.description" v-html="currentPlaylist.description" ></div>
       </div>
     </div>
@@ -39,6 +41,7 @@
 </template>
 
 <script>
+  import ColorThief from 'src/utils/color-thief';
   import { mapState } from 'vuex';
   import groupBy from 'lodash/groupBy';
   import Tabs from './tabs/Tabs.vue';
@@ -74,22 +77,33 @@
       discogsAlbumsData: 'discogsAlbumsData',
       playlistThumbnailUrl() {
         const { images } = this.currentPlaylist;
+        let url = undefined;
+        /* Get the medium image or the only image */
         if (images && Array.isArray(images)) {
-          /* Get the medium image or the only image */
           const index = (images.length >= 2) ? 1 : 0;
-          return images[index].url;
+          url = images[index].url;
         }
-        return undefined;
+
+        /* find color from playlist image and update global state */
+        if (url) {
+          this.getMainColorOfImage(url).then(color => {
+            this.$store.commit('setBackgroundColor', color);
+          });
+        }
+
+        return url;
       },
       groupedTracklist() {
         // TODO: This is a quick approach that can be improved
         // a better way would be to iterate through the list and split wherever the
         // album id changes.
-        return groupBy(this.currentPlaylistTracks, i => i.track.album.id);
+        const tracks = this.currentPlaylistTracks.filter(obj => obj.track);
+        return groupBy(tracks, i => i.track.album.id);
       },
       flatTacklist() {
         if (typeof this.currentPlaylistTracks === 'object') {
-          return this.currentPlaylistTracks.map((item, index) => {
+          const tracks = this.currentPlaylistTracks.filter(obj => obj.track);
+          return tracks.map((item, index) => {
             return {
               index,
               image: 'WIP',
@@ -115,7 +129,39 @@
       },
       getDiscogsInfo(id) {
         return this.discogsAlbumsData[id] ? this.discogsAlbumsData[id] : {};
-      }
+      },
+      convertArrayToRGBA(arr) {
+        const obj = arr.reduce((result, item, index) => {
+          result[index] = item;
+          return result;
+        }, {});
+        const defaults = {
+          0: 20,
+          1: 20,
+          2: 20,
+          3: '0.5',
+        };
+        const color = Object.assign({}, defaults, obj);
+        return `rgba(${color[0]},${color[1]},${color[2]},${color[3]})`;
+      },
+      getMainColorOfImage(url) {
+        const colorPromise = new Promise(resolve => {
+          const img = document.createElement('img');
+          img.crossOrigin = 'Anonymous';
+          img.setAttribute('src', url);
+          img.addEventListener('load', () => {
+            const colorThief = new ColorThief();
+            const color = colorThief.getColor(img);
+            resolve(this.convertArrayToRGBA(color));
+          });
+          /* default if image cannot load */
+          img.addEventListener('error', () => {
+            resolve(this.convertArrayToRGBA([]));
+          });
+        });
+
+        return colorPromise;
+      },
     },
     mixins: [spotify],
     watch: {

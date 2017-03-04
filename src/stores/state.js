@@ -3,6 +3,7 @@
 import concat from 'lodash/concat';
 
 export const State = {
+  backgroundColor: 'undefined',
   userStatus: 'offline',
   userData: {},
   currentPlaylistData: {},
@@ -12,6 +13,9 @@ export const State = {
 };
 
 export const Mutations = {
+  setBackgroundColor(state, data) {
+    state.backgroundColor = data;
+  },
   setUserData(state, data) {
     state.userData = Object.assign({}, data);
   },

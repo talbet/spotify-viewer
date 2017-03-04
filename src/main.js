@@ -3,23 +3,21 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import VueLocalStorage from 'vue-localstorage';
+import Icon from 'vue-svg-icon/Icon.vue';
 import Vuex from 'vuex';
-import createPersistedState from 'vuex-persistedstate'
+import createPersistedState from 'vuex-persistedstate';
 import {State, Mutations} from './stores/state';
 import App from './App.vue';
 import Home from './components/Home.vue';
 import User from './components/User.vue';
 import Playlist from './components/Playlist.vue';
 
-/* eslint-disable no-new */
-// new Vue({
-//   el: '#app',
-//   render: h => h(App),
-// });
-// =--
 Vue.use(VueRouter);
 Vue.use(VueLocalStorage);
 Vue.use(Vuex);
+
+Vue.component('icon', Icon);
+Icon.inject('star');
 
 const router = new VueRouter({
   mode: 'history',
