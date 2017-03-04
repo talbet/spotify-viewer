@@ -9,9 +9,7 @@
       </div>
       <div class="Content">
         <h1 class="Playlist-name">{{ currentPlaylist.name }}</h1>
-        <p v-if="currentPlaylist.description">
-          {{ currentPlaylist.description }}
-        </p>
+        <div v-if="currentPlaylist.description" v-html="currentPlaylist.description" ></div>
       </div>
     </div>
     <hr>

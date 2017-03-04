@@ -1,9 +1,11 @@
 @import './variables';
 
-@mixin grid($multiplier: 1) {
+@mixin grid($multiplier: 1, $nested: true) {
   display: flex;
-  margin-left: -($multiplier * $gutter / 2);
-  margin-right: -($multiplier * $gutter / 2);
+  @if $nested == true {
+    margin-left: -($multiplier * $gutter / 2);
+    margin-right: -($multiplier * $gutter / 2);
+  }
 
   & > * {
     padding-left: $multiplier * $gutter / 2;

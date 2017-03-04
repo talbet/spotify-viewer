@@ -107,6 +107,7 @@ export default {
     flex: 1;
     .tab-list {
       flex: 0 1 auto;
+      margin-bottom: $gutter / 2;
     }
     .tab-list li {
       margin-right: 1rem;
@@ -114,9 +115,8 @@ export default {
     }
     .tab-content {
       flex-direction: column;
-      overflow: hidden;
+      // overflow: hidden;
       position: relative;
-      margin: 10px;
       flex: 1 1;
       min-height: 50px;
     }

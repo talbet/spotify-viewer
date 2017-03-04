@@ -34,7 +34,8 @@ $dark: $grey-darker;
 
 /* ==========  Typography  ========== */
 
-$family-body:'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$family-body: "Nunito Sans", sans-serif;
+$family-headings: "Lato", sans-serif;
 $family-code: "Inconsolata", "Consolas", "Monaco", monospace;
 
 $type-scale: 100%; // 100% for standard 16px body
@@ -53,25 +54,21 @@ $size-medium: $size-5;
 $size-large: $size-3;
 $size-huge: $size-1;
 
-$weight-normal: 400;
+$weight-headings: 700;
+$weight-normal: 300;
 $weight-bold: 700;
 $weight-title-normal: 300;
 $weight-title-bold: 500;
 
 /* ==========  Units  ========== */
-
 $gutter: 1.5rem;
 
-
 /* ==========  Miscellaneous  ========== */
-
 $easing: ease-out;
 $radius-small: 2px;
 $radius: 3px;
 $radius-large: 5px;
 $speed: 86ms;
-
-
 
 // Invert colors
 

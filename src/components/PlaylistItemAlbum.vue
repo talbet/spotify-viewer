@@ -1,9 +1,11 @@
 <template>
   <div class="Wrapper">
     <div class="Sidebar">
+        <div class="AlbumImage">
       <a :href="album.uri">
-        <lazy-image v-if="thumbnailUrl" :src="thumbnailUrl" ratio="1:1" :alt="album.name" container=".Panel--main"/>
+          <lazy-image v-if="thumbnailUrl" :src="thumbnailUrl" ratio="1:1" :alt="album.name" container=".Panel--main"/>
       </a>
+        </div>
     </div>
     <div class="Main">
       <div class="AlbumMeta">
@@ -102,13 +104,15 @@
   }
 
   .Sidebar {
-  @include bleed();
     width: 25%;
   }
 
   .Main {
     flex: 1;
-    /*background: #222326;*/
+  }
+
+  .AlbumImage {
+    box-shadow: 0px 2px 10px 0 rgba(0,0,0,.5);
   }
 
   .AlbumMeta {

@@ -37,6 +37,7 @@
   .UserStatus {
     display: inline-block;
     padding: 0 0.5rem;
+    margin-bottom: 0;
   }
 
   .Avatar {

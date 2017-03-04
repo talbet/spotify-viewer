@@ -1,6 +1,7 @@
 /*! Typebase.less v0.1.0 | MIT License */
 /* Setup */
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600');
+// @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400');
+@import url('https://fonts.googleapis.com/css?family=Lato:700|Nunito+Sans:300');
 @import './variables';
 @import './mixins';
 
@@ -8,7 +9,7 @@
 html {
   font-family: $family-body;
   line-height: 1.5;
-  font-weight: 100;
+  font-weight: $weight-normal;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -24,7 +25,7 @@ p {
 
 ul,
 ol {
-  @include rhythm();
+  @include rhythm(0);
 }
 
 ul li,
@@ -65,7 +66,8 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: $family-body;
+  font-family: $family-headings;
+  font-weight: $weight-headings;
   line-height: 1;
   margin-bottom: 0.5em;
 }

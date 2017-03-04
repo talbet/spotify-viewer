@@ -1,6 +1,6 @@
 <template>
   <div id="vue" class="App">
-    <div class="container">
+    <div class="Header">
       <div class="Beam">
         <div class="Beam-section">
           <nav class="">
@@ -65,10 +65,19 @@
     overflow: hidden;
   }
 
+  .Header {
+    @include grid(2, $nested: false);
+    flex: 0 0 auto;
+    background: rgba(0,0,0,.5);
+  }
+
   .Beam {
     display: flex;
+    align-items: center;
     justify-content: space-between;
-    padding: ($gutter / 2) 0;
+    padding-top: ($gutter / 2);
+    padding-bottom: ($gutter / 2);
+    flex: 1;
   }
 
   .Panel {
@@ -76,17 +85,21 @@
   }
 
   .MainContent {
-    @include grid();
+    @include grid(2, $nested: false);
     width: 100vw;
+    overflow: auto;
   }
 
   .Sidebar {
     width: 20%;
-    max-width: 240px;
+    max-width: 280px;
+    background: rgba(0,0,0,.5);
   }
 
   .Main {
     flex: 1;
+    padding-top: $gutter;
+    padding-bottom: $gutter;
   }
 
   .navbar-nav li {
