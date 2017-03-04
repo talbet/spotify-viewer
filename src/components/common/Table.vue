@@ -85,14 +85,13 @@ export default {
 }
 
 table {
-  border: 2px solid rgba(0,0,0,0.66);
+  border: 2px solid rgba(0,0,0,0.1);
   border-radius: 3px;
-  background-color: #000;
+  background-color: rgba(0,0,0,0.3);
   width: 100%;
 }
 
 th {
-  background-color: #000;
   color: rgba(255,255,255,0.66);
   cursor: pointer;
   user-select: none;
@@ -100,7 +99,6 @@ th {
 
 td {
   white-space: nowrap;
-  background-color: #222;
   line-height: 1;
 }
 

@@ -12,9 +12,20 @@
     "html",
     "vue"
   ],
+  "settings": {
+    "import/resolver": {
+      "webpack": {
+        "config": "build/webpack.base.conf.js"
+      }
+    }
+  },
   "rules": {
     "arrow-parens": ["error", "as-needed", {
       "requireForBlockBody": false,
     }],
+    "import/extensions": ["error", "always", {
+      "js": "never",
+      "vue": "never"
+    }]
   }
 }

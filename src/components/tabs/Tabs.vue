@@ -12,8 +12,8 @@
         :disabled="tab.disabled"
         @click="select(index)">
         <a class="is-unselectable">
-          <span :class="['icon', { 'is-small': size !== 'large' }]" v-if="tab.icon"><i :class="tab.icon"></i></span>
-          <span>{{ tab.label }}</span>
+          <icon class="TabIcon" v-if="tab.icon" :name="tab.icon" scale="2"></icon>
+          <span class="TabLabel">{{ tab.label }}</span>
         </a>
       </li>
     </tab-list>
@@ -97,6 +97,15 @@ export default {
 
 <style lang="scss">
   @import '~assets/variables';
+
+  .TabIcon {
+    margin-right: 5px;
+    vertical-align: middle;
+  }
+
+  .TabLabel {
+    vertical-align: middle;
+  }
 
   .is-flex {
     display: flex;

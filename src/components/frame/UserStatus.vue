@@ -8,7 +8,7 @@
 </template>
 
 <script>
-  import spotify from '../mixins/spotify';
+  import spotify from 'src/mixins/spotify';
 
   export default {
     // Options / Data

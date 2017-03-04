@@ -17,7 +17,7 @@
     <hr>
 
     <tabs animation="slide" :only-fade="false">
-      <tab-pane label="Albums" selected>
+      <tab-pane label="Albums" icon="album" selected>
         <div v-if="groupedTracklist" v-for="(data, key, index) in groupedTracklist">
           <playlist-item-album
             :index="index + 1"
@@ -27,14 +27,14 @@
           />
         </div>
       </tab-pane>
-      <tab-pane label="Playlist">
+      <tab-pane label="Playlist" icon="list">
         <div v-if="currentPlaylistTracks" v-for="(data, index) in currentPlaylistTracks">
           <playlist-item-track :index="index + 1" :data="data"/>
         </div>
       </tab-pane>
-      <tab-pane label="Grid">
-        <demo-grid :data="flatTacklist" :columns="gridColumns" :filter-key="searchQuery">
-        </demo-grid>
+      <tab-pane label="Grid" icon="table">
+        <v-table :data="flatTacklist" :columns="gridColumns" :filter-key="searchQuery">
+        </v-table>
       </tab-pane>
     </tabs>
   </div>
@@ -44,12 +44,12 @@
   import ColorThief from 'src/utils/color-thief';
   import { mapState } from 'vuex';
   import groupBy from 'lodash/groupBy';
-  import Tabs from './tabs/Tabs.vue';
-  import TabPane from './tabs/TabPane.vue';
-  import spotify from '../mixins/spotify';
-  import PlaylistItemTrack from './PlaylistItemTrack.vue';
-  import PlaylistItemAlbum from './PlaylistItemAlbum.vue';
-  import Table from './Table.vue';
+  import Tabs from 'components/tabs/Tabs';
+  import TabPane from 'components/tabs/TabPane';
+  import PlaylistItemTrack from 'components/playlist/PlaylistItemTrack';
+  import PlaylistItemAlbum from 'components/playlist/PlaylistItemAlbum';
+  import Table from 'components/common/Table';
+  import spotify from 'src/mixins/spotify';
 
   export default {
     data() {
@@ -65,7 +65,7 @@
       'playlist-item-album': PlaylistItemAlbum,
       Tabs,
       TabPane,
-      'demo-grid': Table,
+      'v-table': Table,
     },
     created() {
       this.loadPlaylist();

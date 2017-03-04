@@ -34,8 +34,8 @@
 </template>
 
 <script>
-  import UserStatus from './components/UserStatus.vue';
-  import UserPlaylists from './components/UserPlaylists.vue';
+  import UserStatus from 'components/frame/UserStatus';
+  import UserPlaylists from 'components/frame/UserPlaylists';
 
   export default {
     components: {

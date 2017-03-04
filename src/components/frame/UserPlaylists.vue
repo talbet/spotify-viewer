@@ -10,8 +10,8 @@
 </template>
 
 <script>
-import spotify from '../mixins/spotify';
-import PlaylistLink from './PlaylistLink.vue';
+import spotify from 'src/mixins/spotify';
+import PlaylistLink from 'components/common/RouterLink';
 
 export default {
   // Options / Data

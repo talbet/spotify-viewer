@@ -52,6 +52,9 @@
 </template>
 
 <script>
+  import Button from 'components/common/Button';
+  import LazyImage from 'components/common/LazyImage';
+
   export default {
     props: {
       index: Number,
@@ -59,12 +62,12 @@
       extraData: Object,
       discogsData: Object,
     },
-    data: function () {
-      return { isBusy: false }
+    data() {
+      return { isBusy: false };
     },
     components: {
-      'v-button': require('./Button'),
-      'lazy-image': require('./LazyImage'),
+      'v-button': Button,
+      'lazy-image': LazyImage,
     },
     computed: {
       album() {
@@ -87,17 +90,17 @@
         return this.discogsData.styles ? this.discogsData.styles.join(', ') : '';
       },
       popularity() {
-        return Math.ceil( this.albumExtra.popularity / 10);
+        return Math.ceil(this.albumExtra.popularity / 10);
       },
     },
     methods: {
-      range: function(begin, end) {
-        var offset = begin > end ? end : begin;
-        var delta = Math.abs(end - begin);
-        var result = [];
-        for (var i = 0; i <= delta; i++) {
-            result.push(i + offset);
-        };
+      range(begin, end) {
+        const offset = begin > end ? end : begin;
+        const delta = Math.abs(end - begin);
+        const result = [];
+        for (let i = 0; i <= delta; i++) {
+          result.push(i + offset);
+        }
         return result;
       },
       handleDiscogsSearch() {
@@ -109,13 +112,13 @@
         if (dataStore[id] === undefined) {
           fetch(`/discogs?search=${encodeURI(searchString)}`)
             .then(response => response.text())
-            .then((text) => {
+            .then(text => {
               this.isBusy = false;
               const data = JSON.parse(text);
               this.$store.commit('addDiscogsAlbumsData', { [id]: data });
             });
         }
-      }
+      },
     },
   };
 </script>
